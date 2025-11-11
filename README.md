@@ -4,7 +4,7 @@ A Socket.IO-based signaling server for WebRTC voice calling with support for cal
 
 ## 🚀 Live Server
 
-**Production URL:** `https://webrtc-signaling-server-kb9g.onrender.com`
+**Server URL:** `https://webrtc-signaling-server-kb9g.onrender.com`
 
 **Health Check:** 
 ```bash
@@ -135,12 +135,12 @@ socket.emit('end_call', {
 │  Client A   │◄───────►│   Signaling  │◄───────►│  Client B   │
 │  (Socket)   │ Socket  │    Server    │ Socket  │  (Socket)   │
 └─────────────┘  .IO    │  (Node.js)   │  .IO    └─────────────┘
-                         └──────────────┘
-                                │
-                        ┌───────┴────────┐
-                        │                │
-                    User State      Call State
-                    Management      Management
+                        └──────────────┘
+                               │
+                       ┌───────┴────────┐
+                       │                │
+                   User State      Call State
+                   Management      Management
 ```
 
 ## 🚀 Deployment
@@ -153,32 +153,9 @@ socket.emit('end_call', {
 3. Runs `npm install`
 4. Starts server with `node server.js`
 
-**Manual Deployment:**
-1. Go to [Render Dashboard](https://dashboard.render.com)
-2. Select this service
-3. Click "Manual Deploy" → "Deploy latest commit"
-
 **Environment Variables:**
 - `PORT` - Automatically set by Render
 - No additional variables needed for POC
-
-### Railway (Alternative)
-
-1. Connect GitHub repo to Railway
-2. Railway auto-deploys on push
-3. Supports WebSocket connections
-
-### Vercel (Alternative)
-
-```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy
-vercel --prod
-```
-
-**Note:** Vercel serverless functions have time limits. Use Render/Railway for WebSocket servers.
 
 ### Local Development
 
@@ -377,57 +354,8 @@ const subClient = pubClient.duplicate();
 io.adapter(createAdapter(pubClient, subClient));
 ```
 
-Benefits:
-- Multiple server instances
-- Load balancing
-- Handles 1000+ concurrent users
-
-## 📝 Changelog
-
-### Version 2.0 (Current - POC)
-- ✅ Added 30-second call timeout
-- ✅ Added busy signal detection
-- ✅ Added `end_call` event
-- ✅ Added proper cleanup on disconnect
-- ✅ Added call state management
-- ✅ Fixed single device per user
-- ✅ Added `force_disconnect` for multiple logins
-
-### Version 1.0 (Previous)
-- Basic signaling functionality
-- User registration
-- Call routing
-- ICE candidate exchange
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create feature branch: `git checkout -b feature-name`
-3. Commit changes: `git commit -am 'Add feature'`
-4. Push to branch: `git push origin feature-name`
-5. Submit Pull Request
-
-## 📄 License
-
-MIT License - Free to use for POC and production
-
-## 🔗 Related Projects
-
-- **Frontend App:** WebRTC Voice POC (Ionic Angular)
-- **STUN/TURN:** Xirsys servers
-- **Documentation:** See DEVELOPER_GUIDE.md in frontend repo
-
 ## 📞 Support
 
 **Issues:**
 - Check logs: `https://dashboard.render.com` → Your Service → Logs
 - Test endpoints: `curl https://webrtc-signaling-server-kb9g.onrender.com`
-- Check GitHub Issues
-
-**Contact:**
-- GitHub: Addiyan99
-- Repository: https://github.com/Addiyan99/webrtc-signaling-server
-
----
-
-**Server Status:** 🟢 Live at `https://webrtc-signaling-server-kb9g.onrender.com`
